@@ -8,8 +8,6 @@ import javax.persistence.*;
  *
  * @author Marcos
  */
-@Entity
-@Table(name = "notifications")
 public class Notification {
 
 	  @Id

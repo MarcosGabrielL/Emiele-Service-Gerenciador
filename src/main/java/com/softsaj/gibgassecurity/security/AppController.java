@@ -15,8 +15,9 @@ import com.softsaj.gibgassecurity.PasswordReset.GenericResponse;
 import com.softsaj.gibgassecurity.PasswordReset.PasswordResetServices;
 import com.softsaj.gibgassecurity.PasswordReset.PasswordResetToken;
 import com.softsaj.gibgassecurity.exception.UserNotFoundException;
-import com.softsaj.gibgassecurity.models.Evento;
-import com.softsaj.gibgassecurity.models.Notification;
+import com.softsaj.gibgassecurity.gibgasVenda.Relatorios.Evento;
+import com.softsaj.gibgassecurity.gibgasVenda.services.EventoService;
+import com.softsaj.gibgassecurity.gibgasVenda.services.NotificationService;
 import com.softsaj.gibgassecurity.models.Person;
 import com.softsaj.gibgassecurity.models.Revendedor;
 import com.softsaj.gibgassecurity.models.Vendedor;
@@ -26,8 +27,6 @@ import com.softsaj.gibgassecurity.security.User;
 import com.softsaj.gibgassecurity.security.JwtUtil;
 import com.softsaj.gibgassecurity.services.PersonService;
 import com.softsaj.gibgassecurity.repositories.PersonRepository;
-import com.softsaj.gibgassecurity.services.EventoService;
-import com.softsaj.gibgassecurity.services.NotificationService;
 import com.softsaj.gibgassecurity.services.VendedorService;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -54,6 +53,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
+
+import com.softsaj.gibgassecurity.gibgasVenda.services.EventoService;
+import com.softsaj.gibgassecurity.gibgasVenda.services.NotificationService;
+import com.softsaj.gibgassecurity.gibgasVenda.models.Notification;
+
+
 @RestController
 public class AppController {
     
@@ -75,6 +80,12 @@ public class AppController {
     private PasswordResetServices customerService;
      @Autowired
     private VendedorService VendedorService;
+     
+       @Autowired
+    private EventoService es;
+      
+       @Autowired
+    private NotificationService ns;
 
 	
     @GetMapping("")
@@ -173,18 +184,20 @@ public ResponseEntity<User> processRegister(@RequestBody User user) {
          evento.setMessage("Registro no Sistema");
          evento.setUsuario(user.getId().toString());
          
+         es.addEvento(evento);
+         
          
           salvaNotify("1",data,"Confirmação","2","Comfirme seu E-mail",user.getId().toString());
           salvaNotify("1",data,"Cardapio","2","Cadastre seu primeiro Produto",user.getId().toString());
           salvaNotify("1",data,"Loja","2","Edite as informações da Loja",user.getId().toString());
          
-        try {
+       /* try {
             EventoService.SaveEvento(evento,"7");
         } catch (IOException ex) {
             Logger.getLogger(AppController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
             Logger.getLogger(AppController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
     return new ResponseEntity<>(newUser, HttpStatus.CREATED);
 }
 
@@ -342,13 +355,13 @@ public ResponseEntity<User> processRegister(@RequestBody User user) {
          evento.setUsuario(user.getId().toString());
          
          
-        try {
+       /* try {
             EventoService.SaveEvento(evento,"7");
         } catch (IOException ex) {
             Logger.getLogger(AppController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
             Logger.getLogger(AppController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         
         return true;
     }
@@ -365,6 +378,7 @@ public ResponseEntity<User> processRegister(@RequestBody User user) {
     
     public void salvaNotify(String cod,String date, String info, String level, String message,String usuario){
          
+        
           
           Notification notification = new Notification();
           notification.setCod("VC1");
@@ -374,15 +388,10 @@ public ResponseEntity<User> processRegister(@RequestBody User user) {
          notification.setMessage(message);
          notification.setUsuario(usuario);
          notification.setIsRead(false);
-          
          
-         try {
-          NotificationService.addNotification(notification, "1");
-        } catch (IOException ex) {
-            Logger.getLogger(AppController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(AppController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+           ns.addNotification(notification);
+          
+       
           
      }
    

@@ -15,8 +15,7 @@ import javax.persistence.Table;
  *
  * @author Marcos
  */
-@Entity
-@Table(name = "logs")
+
 public class Evento {
     
     /*SEVERE (highest)

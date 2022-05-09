@@ -11,6 +11,8 @@ package com.softsaj.gibgassecurity.security;
  */
 import com.softsaj.gibgassecurity.security.JwtFilter;
 import com.softsaj.gibgassecurity.security.CustomUserDetailsService;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,6 +29,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -44,6 +47,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Autowired
     private JwtFilter jwtFilter;
+    
+       
+@Bean
+public RestTemplate restTemplate() {
+    return new RestTemplate();
+}
+
+@Bean
+public CloseableHttpClient httpClient() {
+    HttpClientBuilder builder = HttpClientBuilder.create();
+    //builder.setEverything(everything); // configure it
+    CloseableHttpClient httpClient = builder.build();
+    return httpClient;
+}
     
 
     @Override
@@ -78,7 +95,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         http.cors().and()
 	  .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/perfispagamento/**","/vendedores/**","/islogged/**", "/forgot_password/**","/reset_password/**", "/register", "/*", "/user/**", "/cinefilos/**", "/textoes/**", "/files/**", "/file/**").permitAll()
+                .antMatchers("/perfispagamento/**","/vendedores/**","/islogged/**", "/forgot_password/**",
+                             "/reset_password/**", "/register", "/*", "/user/**", "/cinefilos/**", "/textoes/**",
+                             "/files/**", "/file/**"
+                            ,"/auth/**","/resultpagos/**","/preferences/**",
+                             "/create/**","/generic/**","/notifications/**","/produtos/**", "/register", "/*",
+                             "/user/**", "/cinefilos/**", "/textoes/**", "/uploadFile/**", "/file/**",
+		             "/loja/**", "/vendas/**").permitAll()
                 .antMatchers("/users").authenticated()
                 .antMatchers("/authenticate")
                 .permitAll().anyRequest().authenticated()
