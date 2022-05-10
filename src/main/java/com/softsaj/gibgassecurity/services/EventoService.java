@@ -33,7 +33,7 @@ public class EventoService {
     
      public static void SaveEvento(Evento evento,String token) throws IOException, InterruptedException{
                 
-            String apiHost = "https://emiele-service-vendas.herokuapp.com/eventos/evento/add?token=1";
+            String apiHost = "https://emiele-service-gerenciador.herokuapp.com/eventos/evento/add?token=1";
        
             HttpClient httpclient = HttpClients.createDefault();
             HttpPost httppost = new HttpPost(apiHost);

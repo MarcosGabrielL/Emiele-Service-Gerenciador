@@ -353,6 +353,8 @@ public ResponseEntity<User> processRegister(@RequestBody User user) {
          evento.setLevel("2");
          evento.setMessage("Confirmou Email");
          evento.setUsuario(user.getId().toString());
+
+	es.addEvento(evento);
          
          
        /* try {

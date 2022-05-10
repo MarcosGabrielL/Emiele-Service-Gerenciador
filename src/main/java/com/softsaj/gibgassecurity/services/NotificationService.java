@@ -25,7 +25,7 @@ public class NotificationService {
     
     public static void addNotification(Notification notification,String token) throws IOException, InterruptedException{
                 
-            String apiHost = "https://emiele-service-vendas.herokuapp.com/notifications/notification/add?token=1";
+            String apiHost = "https://emiele-service-gerenciador.herokuapp.com/notifications/notification/add?token=1";
        
             HttpClient httpclient = HttpClients.createDefault();
             HttpPost httppost = new HttpPost(apiHost);

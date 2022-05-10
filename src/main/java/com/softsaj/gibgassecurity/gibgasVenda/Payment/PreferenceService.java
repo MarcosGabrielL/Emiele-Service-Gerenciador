@@ -45,7 +45,7 @@ public class PreferenceService {
         }*/
 
         MercadoPago.SDK.setAccessToken(preferenceDTO.getAccessToken());
-        String notificationUrl = "https://emiele-service-vendas.herokuapp.com/generic";
+        String notificationUrl = "https://emiele-service-gerenciador.herokuapp.com/generic";
 
         Preference p = new Preference();
         
@@ -90,7 +90,7 @@ public class PreferenceService {
         }*/
 
         MercadoPago.SDK.setAccessToken(preferenceDTO.getAccessToken());
-        String notificationUrl = "https://emiele-service-vendas.herokuapp.com/generic/Vendedor";
+        String notificationUrl = "https://emiele-service-gerenciador.herokuapp.com/generic/Vendedor";
 
         Preference p = new Preference();
         
@@ -134,7 +134,7 @@ public class PreferenceService {
         }*/
 
         MercadoPago.SDK.setAccessToken(preferenceDTO.getAccessToken());
-        String notificationUrl = "https://emiele-service-vendas.herokuapp.com/generic";
+        String notificationUrl = "https://emiele-service-gerenciador.herokuapp.com/generic";
 
         Preference p = new Preference();
         
