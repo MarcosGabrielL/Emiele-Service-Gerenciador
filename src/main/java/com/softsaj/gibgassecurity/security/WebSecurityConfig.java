@@ -97,11 +97,11 @@ public CloseableHttpClient httpClient() {
                 .authorizeRequests()
                 .antMatchers("/perfispagamento/**","/vendedores/**","/islogged/**", "/forgot_password/**",
                              "/reset_password/**", "/register", "/*", "/user/**", "/cinefilos/**", "/textoes/**",
-                             "/files/**", "/file/**"
-                            ,"/auth/**","/resultpagos/**","/preferences/**",
-                             "/create/**","/generic/**","/notifications/**","/produtos/**", "/register", "/*",
+                             "/files/**", "/file/**","/auth/**","/resultpagos/**","/preferences/**",
+                             "/eventos/**","/vendidos/**","/files/**", "/filelist/**", "/download/**",
+                             "/create/**","/generic/**","/notifications/**","/produtos/**", "/register",
                              "/user/**", "/cinefilos/**", "/textoes/**", "/uploadFile/**", "/file/**",
-		             "/loja/**", "/vendas/**").permitAll()
+		             "/loja/**", "/vendas/**", "/auth/**").permitAll()
                 .antMatchers("/users").authenticated()
                 .antMatchers("/authenticate")
                 .permitAll().anyRequest().authenticated()
