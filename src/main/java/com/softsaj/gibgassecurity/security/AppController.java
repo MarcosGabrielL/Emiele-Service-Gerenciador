@@ -150,6 +150,8 @@ public ResponseEntity<User> processRegister(@RequestBody User user) {
         vendedor.setSerie(0);
         vendedor.setDescricao("Olá, sou "+vendedor.getNomefantasia()+" : Decisões: Se você não consegue decidir, a resposta é não. Se dois caminhos igualmente difíceis, escolha o mais doloroso a curto prazo (evitar a dor é criar uma ilusão de igualdade).");
         VendedorService.addVendedor(vendedor);
+
+	//Salva informações Frete
     }
     if(user.getTipo().equals("2")){ //Revendedor
         Revendedor r = new Revendedor();

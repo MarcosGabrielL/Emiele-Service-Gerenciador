@@ -87,7 +87,7 @@ public class NotificationController {
     }
     
     
-    @PutMapping("/notification/update/{id}")
+    @PostMapping("/notification/update/{id}")
     public ResponseEntity<Notification> updateNotification(@PathVariable("id") Long id, @RequestBody Notification newnotification
             ,@RequestParam("token") String token) {
         
