@@ -35,6 +35,10 @@ public class VendasService {
         return rp.findByData(datavenda, idvendedor);
     }
       
+      public List<Vendas> findVendasByComprador(String idcomprador) {
+        return rp.findVendasByComprador(idcomprador);
+    }
+      
      public List<Vendas> findAllByMes(String datainicio, String datafinal, String idvendedor) {
         return rp.findAllByMes(datainicio,datafinal, idvendedor );
     }

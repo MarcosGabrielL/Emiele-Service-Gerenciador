@@ -105,6 +105,16 @@ public class VendasController {
         return new ResponseEntity<>(venda, HttpStatus.OK);
     }
     
+    @GetMapping("/venda/comprador")
+     public ResponseEntity<List<Vendas>> getCienfiloById (@RequestParam("id") String id
+            ,@RequestParam("token") String token) {
+        
+     
+        
+        List<Vendas> venda = vs.findVendasByComprador(id);
+        return new ResponseEntity<>(venda, HttpStatus.OK);
+    }
+    
     @PostMapping("/venda")
     public ResponseEntity<Vendas> addVendas(
             @RequestBody RequestWrapper requestWrapper,

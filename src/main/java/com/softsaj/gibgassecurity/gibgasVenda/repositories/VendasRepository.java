@@ -27,5 +27,11 @@ public interface VendasRepository extends JpaRepository<Vendas, Long> {
       @Query("SELECT u FROM Vendas u WHERE u.diavenda between ?1 and ?2 and u.vendedor_id = ?2")
      List<Vendas> findAllByMes(String datainicio, String datafinal, String idvendedor);
      
+     
+      @Query("SELECT u FROM Vendas u WHERE u.comprador_id = ?1")
+     List<Vendas> findVendasByComprador(String idcomprador);
+     
+    
+     
      void deleteVendasById(Long id);
 }
