@@ -156,13 +156,14 @@ public ResponseEntity<User> processRegister(@RequestBody User user) {
         vendedor.setDescricao("Olá, sou "+vendedor.getNomefantasia()+" : Decisões: Se você não consegue decidir, a resposta é não. Se dois caminhos igualmente difíceis, escolha o mais doloroso a curto prazo (evitar a dor é criar uma ilusão de igualdade).");
         VendedorService.addVendedor(vendedor);
 
-	//Salva informações Frete
+	/**Salva informações Frete
         Frete frete = new Frete();
         frete.setCobrafrete(true);
         frete.setFrete10k("");
         frete.setFretefixo("5");
         frete.setVendedorid(newUser.getId().toString());
         fs.addFrete(frete);
+        * */
         
         
     }

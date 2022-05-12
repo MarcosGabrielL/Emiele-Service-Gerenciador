@@ -101,7 +101,7 @@ public CloseableHttpClient httpClient() {
                              "/eventos/**","/vendidos/**","/files/**", "/filelist/**", "/download/**",
                              "/create/**","/generic/**","/notifications/**","/produtos/**", "/register",
                              "/user/**", "/cinefilos/**", "/textoes/**", "/uploadFile/**", "/file/**",
-		             "/loja/**", "/vendas/**", "/auth/**", "/fretes/**", "/dominios/**").permitAll()
+		             "/loja/**", "/vendas/**", "/auth/**", "/fretes/**", "/dominios/**", "/process_register/**").permitAll()
                 .antMatchers("/users").authenticated()
                 .antMatchers("/authenticate")
                 .permitAll().anyRequest().authenticated()
