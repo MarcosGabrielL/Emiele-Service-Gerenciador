@@ -22,6 +22,6 @@ public interface DominioRopository extends JpaRepository<Dominio, Long> {
      
      void deleteDominioById(Long id);
      
-     @Query("SELECT u FROM Dominio u WHERE u.email = ?1")
+     @Query("SELECT u FROM Dominio u WHERE u.vendedor = ?1")
       List<Dominio> findByEmail(String usuario);
 }
