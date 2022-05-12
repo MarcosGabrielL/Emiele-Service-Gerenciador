@@ -16,6 +16,7 @@ import com.softsaj.gibgassecurity.PasswordReset.PasswordResetServices;
 import com.softsaj.gibgassecurity.PasswordReset.PasswordResetToken;
 import com.softsaj.gibgassecurity.exception.UserNotFoundException;
 import com.softsaj.gibgassecurity.gibgasVenda.Relatorios.Evento;
+import com.softsaj.gibgassecurity.gibgasVenda.models.Frete;
 import com.softsaj.gibgassecurity.gibgasVenda.services.EventoService;
 import com.softsaj.gibgassecurity.gibgasVenda.services.NotificationService;
 import com.softsaj.gibgassecurity.models.Person;
@@ -57,6 +58,7 @@ import org.springframework.mail.SimpleMailMessage;
 import com.softsaj.gibgassecurity.gibgasVenda.services.EventoService;
 import com.softsaj.gibgassecurity.gibgasVenda.services.NotificationService;
 import com.softsaj.gibgassecurity.gibgasVenda.models.Notification;
+import com.softsaj.gibgassecurity.gibgasVenda.services.FreteService;
 
 
 @RestController
@@ -86,6 +88,9 @@ public class AppController {
       
        @Autowired
     private NotificationService ns;
+       
+       @Autowired
+    private FreteService fs;
 
 	
     @GetMapping("")
@@ -152,6 +157,14 @@ public ResponseEntity<User> processRegister(@RequestBody User user) {
         VendedorService.addVendedor(vendedor);
 
 	//Salva informações Frete
+        Frete frete = new Frete();
+        frete.setCobrafrete(true);
+        frete.setFrete10k("");
+        frete.setFretefixo("5");
+        frete.setVendedorid(newUser.getId().toString());
+        fs.addFrete(frete);
+        
+        
     }
     if(user.getTipo().equals("2")){ //Revendedor
         Revendedor r = new Revendedor();
